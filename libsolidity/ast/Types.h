@@ -728,8 +728,6 @@ public:
 	std::pair<u256, unsigned> const& storageOffsetsOfMember(std::string const& _name) const;
 	u256 memoryOffsetOfMember(std::string const& _name) const;
 
-	StructDefinition const& structDefinition() const { return m_struct; }
-
 	/// @returns the set of all members that are removed in the memory version (typically mappings).
 	std::set<std::string> membersMissingInMemory() const;
 

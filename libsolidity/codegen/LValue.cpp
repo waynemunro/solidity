@@ -306,10 +306,7 @@ void StorageItem::storeValue(Type const& _sourceType, SourceLocation const& _loc
 			m_context << Instruction::POP;
 			auto const& structType = dynamic_cast<StructType const&>(*m_dataType);
 			auto const& sourceType = dynamic_cast<StructType const&>(_sourceType);
-			solAssert(
-				structType.structDefinition() == sourceType.structDefinition(),
-				"Struct assignment with conversion."
-			);
+			solAssert(structType == sourceType, "Struct assignment with conversion.");
 			solAssert(sourceType.location() != DataLocation::CallData, "Structs in calldata not supported.");
 			for (auto const& member: structType.members(nullptr))
 			{
