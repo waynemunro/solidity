@@ -53,7 +53,7 @@ bool StaticAnalyzer::visit(FunctionDefinition const& _function)
 
 	for (Declaration const* declaration: m_globals)
 		if (declaration->name() == _function.name())
-			warning(_function.location(), "Shadowing global variable " + _function.name() + ".");
+			warning(_function.location(), "Shadowing global function \"" + _function.name() + "\".");
 
 	return true;
 }
@@ -69,6 +69,15 @@ bool StaticAnalyzer::visit(MemberAccess const& _memberAccess)
 		if (MagicType const* type = dynamic_cast<MagicType const*>(_memberAccess.expression().annotation().type.get()))
 			if (type->kind() == MagicType::Kind::Message && _memberAccess.memberName() == "value")
 				warning(_memberAccess.location(), "\"msg.value\" used in non-payable function. Do you want to add the \"payable\" modifier to this function?");
+
+	return true;
+}
+
+bool StaticAnalyzer::visit(VariableDeclaration const& _variable)
+{
+	for (Declaration const* declaration: m_globals)
+		if (declaration->name() == _variable.name())
+			warning(_variable.location(), "Shadowing global variable \"" + _variable.name() + "\".");
 
 	return true;
 }
