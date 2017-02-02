@@ -16,6 +16,7 @@
 */
 /**
  * @author Federico Bond <federicobond@gmail.com>
+ * @author Alex Beregszaszi
  * @date 2016
  * Static analyzer and checker.
  */
@@ -49,6 +50,11 @@ void StaticAnalyzer::endVisit(ContractDefinition const&)
 bool StaticAnalyzer::visit(FunctionDefinition const& _function)
 {
 	m_nonPayablePublic = _function.isPublic() && !_function.isPayable();
+
+	for (Declaration const* declaration: m_globals)
+		if (declaration->name() == _function.name())
+			warning(_function.location(), "Shadowing global variable " + _function.name() + ".");
+
 	return true;
 }
 

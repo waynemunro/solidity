@@ -44,7 +44,8 @@ class StaticAnalyzer: private ASTConstVisitor
 {
 public:
 	/// @param _errors the reference to the list of errors and warnings to add them found during static analysis.
-	explicit StaticAnalyzer(ErrorList& _errors): m_errors(_errors) {}
+	explicit StaticAnalyzer(std::vector<Declaration const*> const& _globals, ErrorList& _errors):
+		m_globals(_globals), m_errors(_errors) { }
 
 	/// Performs static analysis on the given source unit and all of its sub-nodes.
 	/// @returns true iff all checks passed. Note even if all checks passed, errors() can still contain warnings
@@ -61,6 +62,8 @@ private:
 	virtual void endVisit(FunctionDefinition const& _function) override;
 
 	virtual bool visit(MemberAccess const& _memberAccess) override;
+
+	std::vector<Declaration const*> const& m_globals;
 
 	ErrorList& m_errors;
 
