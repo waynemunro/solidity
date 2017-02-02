@@ -1,5 +1,8 @@
 ### 0.4.11 (unreleased)
 
+Features:
+ * Type checker: Warn when builtin symbols (e.g. ``keccak256``, ``msg``, etc.) are overridden.
+
 ### 0.4.10 (2017-03-15)
 
 Features:
