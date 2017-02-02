@@ -69,6 +69,12 @@ private:
 
 	/// Flag that indicates whether a public function does not contain the "payable" modifier.
 	bool m_nonPayablePublic = false;
+
+	/// Flag that indicates a constructor.
+	bool m_constructor = false;
+
+	/// Current contract.
+	ContractDefinition const* m_currentContract = nullptr;
 };
 
 }
