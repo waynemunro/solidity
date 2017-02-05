@@ -5327,6 +5327,21 @@ BOOST_AUTO_TEST_CASE(cyclic_dependency_for_constants)
 	CHECK_SUCCESS(text);
 }
 
+BOOST_AUTO_TEST_CASE(using_this_in_constructor)
+{
+	char const* text = R"(
+		contract C {
+			function C() {
+				this.f();
+			}
+
+			function f() {
+			}
+		}
+	)";
+	CHECK_WARNING(text, "\"this\" used in constructor");
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 }

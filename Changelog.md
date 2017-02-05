@@ -1,5 +1,8 @@
 ### 0.4.11 (unreleased)
 
+Features:
+ * Type checker: Warn if using ``this`` in a constructor.
+
 ### 0.4.10 (2017-03-15)
 
 Features:
