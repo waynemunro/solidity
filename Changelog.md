@@ -1,5 +1,8 @@
 ### 0.4.11 (unreleased)
 
+Features:
+ * Inline assembly: Support bitwise shift operators.
+
 ### 0.4.10 (2017-03-15)
 
 Features:
