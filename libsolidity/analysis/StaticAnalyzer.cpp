@@ -51,8 +51,8 @@ bool StaticAnalyzer::visit(FunctionDefinition const& _function)
 {
 	m_nonPayablePublic = _function.isPublic() && !_function.isPayable();
 
-	for (Declaration const* declaration: m_globals)
-		if (declaration->name() == _function.name())
+	for (string const name: m_globals)
+		if (name == _function.name())
 			warning(_function.location(), "Shadowing builtin symbol \"" + _function.name() + "\".");
 
 	return true;
@@ -75,8 +75,8 @@ bool StaticAnalyzer::visit(MemberAccess const& _memberAccess)
 
 bool StaticAnalyzer::visit(VariableDeclaration const& _variable)
 {
-	for (Declaration const* declaration: m_globals)
-		if (declaration->name() == _variable.name())
+	for (string const name: m_globals)
+		if (name == _variable.name())
 			warning(_variable.location(), "Shadowing builtin symbol \"" + _variable.name() + "\".");
 
 	return true;
