@@ -61,6 +61,7 @@ public:
 private:
 	/// Adds a new warning to the list of errors.
 	void warning(SourceLocation const& _location, std::string const& _description);
+	void checkShadowingBuiltin(Declaration const& _declaration);
 
 	virtual bool visit(ContractDefinition const& _contract) override;
 	virtual void endVisit(ContractDefinition const& _contract) override;
