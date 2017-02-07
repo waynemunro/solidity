@@ -82,6 +82,24 @@ bool StaticAnalyzer::visit(VariableDeclaration const& _variable)
 	return true;
 }
 
+bool StaticAnalyzer::visit(EventDefinition const& _event)
+{
+	for (string const name: m_globals)
+		if (name == _event.name())
+			warning(_event.location(), "Shadowing builtin symbol \"" + _event.name() + "\".");
+
+	return true;
+}
+
+bool StaticAnalyzer::visit(ImportDirective const& _import)
+{
+	for (string const name: m_globals)
+		if (name == _import.name())
+			warning(_import.location(), "Shadowing builtin symbol \"" + _import.name() + "\".");
+
+	return true;
+}
+
 void StaticAnalyzer::warning(SourceLocation const& _location, string const& _description)
 {
 	auto err = make_shared<Error>(Error::Type::Warning);

@@ -71,6 +71,10 @@ private:
 	virtual bool visit(MemberAccess const& _memberAccess) override;
 	virtual bool visit(VariableDeclaration const& _variable) override;
 
+	virtual bool visit(EventDefinition const& _event) override;
+
+	virtual bool visit(ImportDirective const& _import) override;
+
 	std::vector<std::string> m_globals;
 
 	ErrorList& m_errors;
