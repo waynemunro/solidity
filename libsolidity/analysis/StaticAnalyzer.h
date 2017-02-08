@@ -69,6 +69,9 @@ private:
 	virtual bool visit(FunctionDefinition const& _function) override;
 	virtual void endVisit(FunctionDefinition const& _function) override;
 
+	virtual bool visit(StructDefinition const& _struct) override;
+	virtual void endVisit(StructDefinition const& _struct) override;
+
 	virtual bool visit(MemberAccess const& _memberAccess) override;
 	virtual bool visit(VariableDeclaration const& _variable) override;
 
@@ -85,6 +88,9 @@ private:
 
 	/// Flag that indicates whether a public function does not contain the "payable" modifier.
 	bool m_nonPayablePublic = false;
+
+	/// Flag that indicates whether the current scope is within a struct definition.
+	bool m_withinStruct = false;
 };
 
 }
