@@ -98,6 +98,13 @@ bool StaticAnalyzer::visit(EventDefinition const& _event)
 bool StaticAnalyzer::visit(ImportDirective const& _import)
 {
 	checkShadowingBuiltin(_import);
+	for (auto const& alias: _import.symbolAliases())
+	{
+		if (auto aliasName = alias.second.get())
+			for (string const name: m_globals)
+				if (name == *aliasName)
+					warning(_import.location(), "Shadowing builtin symbol \"" + name + "\".");
+	}
 	return true;
 }
 
