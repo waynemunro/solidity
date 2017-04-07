@@ -54,7 +54,13 @@ void testConstantOptimizer()
 	{
 		string s;
 		getline(cin, s);
-		numbers.push_back(u256(s));
+		try
+		{
+			numbers.push_back(u256(s));
+		}
+		catch (...)
+		{
+		}
 	}
 	cout << "Got " << numbers.size() << " inputs:" << endl;
 
