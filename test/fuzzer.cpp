@@ -52,15 +52,9 @@ void testConstantOptimizer()
 	vector<u256> numbers;
 	while (!cin.eof())
 	{
-		string s;
-		getline(cin, s);
-		try
-		{
-			numbers.push_back(u256(s));
-		}
-		catch (...)
-		{
-		}
+		h256 data;
+		cin.read(reinterpret_cast<char*>(data.data()), 32);
+		numbers.push_back(u256(data));
 	}
 	cout << "Got " << numbers.size() << " inputs:" << endl;
 
@@ -153,7 +147,7 @@ Allowed options)",
 		(
 			"const-opt",
 			"Only run the constant optimizer. "
-			"Expects a hex string of up to 32 bytes on stdin."
+			"Expects a binary string of up to 32 bytes on stdin."
 		);
 
 	po::variables_map arguments;
