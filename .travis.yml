@@ -59,8 +59,6 @@ matrix:
           dist: trusty
           sudo: required
           compiler: gcc
-          before_install:
-              - docker pull ethereum/client-cpp
           env:
               - ZIP_SUFFIX=ubuntu-trusty
 
@@ -68,8 +66,6 @@ matrix:
           dist: trusty
           sudo: required
           compiler: clang
-          before_install:
-              - docker pull ethereum/client-cpp
           env:
               - ZIP_SUFFIX=ubuntu-trusty-clang
 
