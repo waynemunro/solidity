@@ -150,6 +150,7 @@ GasMeter::GasConsumption GasMeter::estimateMax(AssemblyItem const& _item, bool _
 			break;
 		}
 		case Instruction::CREATE:
+		case Instruction::CREATE_P2SH:
 			if (_includeExternalCosts)
 				// We assume that we do not know the target contract and thus, the consumption is infinite.
 				gas = GasConsumption::infinite();
